@@ -29,3 +29,42 @@ variable "common_tag" {
         terraform = true
     }
 }
+
+variable "public_subnet_cidr" {
+    type = list
+     validation {
+    condition     = length(var.public_subnet_cidr) == 2
+    error_message = "Please provide 2 subnets ip"
+  }
+}
+
+variable "public_subnet_tag" {
+    default = {}
+}
+
+variable "private_subnet_cidr" {
+    type = list
+     validation {
+    condition     = length(var.private_subnet_cidr) == 2
+    error_message = "Please provide 2 subnets ip"
+  }
+}
+
+variable "private_subnet_tag" {
+    default = {}
+}
+
+variable "database_subnet_cidr" {
+    type = list
+     validation {
+    condition     = length(var.database_subnet_cidr) == 2
+    error_message = "Please provide 2 subnets ip"
+  }
+}
+variable "database_subnet_tag" {
+    default = {}
+}
+
+variable "subnet_group_tag" {
+    default = {}
+}
