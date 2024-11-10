@@ -1,10 +1,10 @@
-resource "aws_vpc" "expense" {
+resource "aws_vpc" "main" {
   cidr_block = var.cidr_block
-  enable_dns_hostnames = true
+  enable_dns_hostnames = var.enable_dns
 
   tags = merge( var.common_tag, var.vpc_tag,
   {
-    Name = "expense"
+    Name = local.resource_name
   }
   )
 }
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "expense" {
 
   tags = merge( var.common_tag, var.igw_tag,
   {
-    Name = "expense"
+    Name = local.resource_name
   }
   )
 }

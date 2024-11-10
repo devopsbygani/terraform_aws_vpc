@@ -1,5 +1,5 @@
 output "vpc_info" {
-  value       = aws_vpc.expense
+  value       = aws_vpc.main.id
   sensitive   = false
 }
 
