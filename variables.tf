@@ -14,17 +14,17 @@ variable "enable_dns"{
     default = true
 }
 
-variable "vpc_tag" {
+variable "vpc_tags" {
      default = {}
 
 }
 
-variable "igw_tag" {
+variable "igw_tags" {
      default = {}
 
 }
 
-variable "common_tag" {
+variable "common_tags" {
     default = {
         terraform = true
     }
@@ -38,7 +38,7 @@ variable "public_subnet_cidr" {
   }
 }
 
-variable "public_subnet_tag" {
+variable "public_subnet_tags" {
     default = {}
 }
 
@@ -50,7 +50,7 @@ variable "private_subnet_cidr" {
   }
 }
 
-variable "private_subnet_tag" {
+variable "private_subnet_tags" {
     default = {}
 }
 
@@ -61,10 +61,30 @@ variable "database_subnet_cidr" {
     error_message = "Please provide 2 subnets ip"
   }
 }
-variable "database_subnet_tag" {
+variable "database_subnet_tags" {
     default = {}
 }
 
-variable "subnet_group_tag" {
+variable "subnet_group_tags" {
     default = {}
+}
+
+variable "public_route_table_tags" {
+    default = {}
+}
+
+variable "private_route_table_tags" {
+    default = {}
+}
+
+variable "database_route_table_tags" {
+    default = {}
+}
+
+variable "peering_tags" {
+    default = {}
+}
+
+variable "is_peering_requried" {
+    default = false
 }
