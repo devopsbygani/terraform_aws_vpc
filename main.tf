@@ -2,18 +2,15 @@
 resource "aws_vpc" "main" {
   cidr_block = var.cidr_block
   enable_dns_hostnames = var.enable_dns
-
   tags = merge( var.common_tags, var.vpc_tags,
   {
     Name = local.resource_name
   }
-  )
+  ) 
 }
-
 #internet gateway
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
-
   tags = merge( var.common_tags, var.igw_tags,
   {
     Name = local.resource_name
@@ -33,7 +30,7 @@ resource "aws_subnet" "public" {
   }
   )
 }
-
+# private subnet
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidr)
   vpc_id     = aws_vpc.main.id
@@ -46,7 +43,7 @@ resource "aws_subnet" "private" {
   }
   )
 }
-
+#database subnet
 resource "aws_subnet" "database" {
   count = length(var.database_subnet_cidr)
   vpc_id     = aws_vpc.main.id
