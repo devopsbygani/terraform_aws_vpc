@@ -32,9 +32,9 @@ resource "aws_subnet" "public" {
 }
 # private subnet
 resource "aws_subnet" "private" {
-  count = length(var.private_subnet_cidr)
+  count = length(var.private_subnet_cidrs)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.private_subnet_cidr[count.index] 
+  cidr_block = var.private_subnet_cidrs[count.index] 
   availability_zone = local.availability_zone[count.index]
 
   tags = merge( var.common_tags, var.private_subnet_tags,
@@ -45,9 +45,9 @@ resource "aws_subnet" "private" {
 }
 #database subnet
 resource "aws_subnet" "database" {
-  count = length(var.database_subnet_cidr)
+  count = length(var.database_subnet_cidrs)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.database_subnet_cidr[count.index] 
+  cidr_block = var.database_subnet_cidrs[count.index] 
   availability_zone = local.availability_zone[count.index]
 
   tags = merge( var.common_tags, var.database_subnet_tags,
