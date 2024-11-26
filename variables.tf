@@ -6,7 +6,7 @@ variable "envirnoment" {
         # this is mandatory to be passed by user
 }
 
-variable "cidr_block"{
+variable "vpc_cidr"{
     type = string
     default = "10.0.0.0/16"
 }
@@ -30,10 +30,10 @@ variable "common_tags" {
     }
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet_cidrs" {
     type = list
      validation {
-    condition     = length(var.public_subnet_cidr) == 2
+    condition     = length(var.public_subnet_cidrs) == 2
     error_message = "Please provide 2 subnets ip"
   }
 }

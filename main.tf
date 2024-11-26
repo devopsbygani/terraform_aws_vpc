@@ -1,6 +1,6 @@
 # VPC
 resource "aws_vpc" "main" {
-  cidr_block = var.cidr_block
+  cidr_block = var.vpc_cidr
   enable_dns_hostnames = var.enable_dns
   tags = merge( var.common_tags, var.vpc_tags,
   {
@@ -19,11 +19,11 @@ resource "aws_internet_gateway" "main" {
 }
 # subnets in 2 regions
 resource "aws_subnet" "public" {
-  count = length(var.public_subnet_cidr)
+  count = length(var.public_subnet_cidrs)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.public_subnet_cidr[count.index] 
+  cidr_block = var.public_subnet_cidrs[count.index] 
   availability_zone = local.availability_zone[count.index]
-
+  map_public_ip_on_launch = true
   tags = merge( var.common_tags, var.public_subnet_tags,
   {
     Name = "${local.resource_name}-public-${local.availability_zone[count.index]}"
