@@ -1,7 +1,7 @@
 # peering : connection between 2 VPC's
 resource "aws_vpc_peering_connection" "peering" {
   count = var.is_peering_requried ? 1 : 0
-  peer_vpc_id   = data.aws_vpc.default.id
+  peer_vpc_id   = data.aws_vpc.default.id   # other vpc where peering conenction is requried.
   vpc_id        = aws_vpc.main.id
   auto_accept   = true
   tags = merge( var.common_tags, var.peering_tags,
